@@ -159,6 +159,9 @@
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>CustomerProfile.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\客戶View表.cs">
+      <DependentUpon>CustomerProfile.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\客戶聯絡人.cs">
       <DependentUpon>CustomerProfile.tt</DependentUpon>
     </Compile>
