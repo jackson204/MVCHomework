@@ -5,17 +5,39 @@
 }
 
 <h2>Index</h2>
+@using (Html.BeginForm("Index", "客戶資料", FormMethod.Get))
+{
+    <p>
+        搜尋：@Html.TextBox("keyword")
+    </p>}
 
+<table clas
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
+            <a href="@Url.Action("Index", new {
+                    sortBy = "客戶名稱",
+                    sortDirection = "ASC",
+                    keyword = Html.Value("keyword") })">⬆</a>
             @Html.DisplayNameFor(model => model.客戶名稱)
+            <a href="@Url.Action("Index", new {
+                    sortBy = "客戶名稱",
+                    sortDirection = "DESC",
+                    keyword = Html.Value("keyword") })">⬇</a>
         </th>
         <th>
+            <a href="@Url.Action("Index", new {
+                    sortBy = "統一編號",
+                    sortDirection = "ASC",
+                    keyword = Html.Value("keyword") })">⬆</a>
             @Html.DisplayNameFor(model => model.統一編號)
+            <a href="@Url.Action("Index", new {
+                    sortBy = "統一編號",
+                    sortDirection = "DESC",
+                    keyword = Html.Value("keyword") })">⬇</a>
         </th>
         <th>
             @Html.DisplayNameFor(model => model.電話)

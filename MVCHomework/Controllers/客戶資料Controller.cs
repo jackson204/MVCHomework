@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVCHomework.Models;
+using MVCHomework.ViewModels;
 using Omu.ValueInjecter;
 
 namespace MVCHomework.Controllers
@@ -17,9 +18,16 @@ namespace MVCHomework.Controllers
         客戶資料Repository repo = RepositoryHelper.Get客戶資料Repository();
 
         // GET: 客戶資料
-        public ActionResult Index()
+        public ActionResult Index(客戶資料Filter filter)
         {
-            return View(repo.All());
+            if (!ModelState.IsValid)
+            {
+                ViewData.Model = new List<客戶資料>();
+                return View();
+            }
+
+            ViewData.Model = repo.Search(filter);
+            return View();
         }
 
         // GET: 客戶資料/Details/5
@@ -117,7 +125,7 @@ namespace MVCHomework.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
         
-            客戶資料 客戶資料 = repo.All().FirstOrDefault(p => p.Id == id);
+            客戶資料 客戶資料 = repo.FindOne(id);
             repo.Delete(客戶資料);
             repo.UnitOfWork.Commit();
             return RedirectToAction("Index");
